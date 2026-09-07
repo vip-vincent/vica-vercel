@@ -1,5 +1,7 @@
 "use client";
 
+import { memo } from "react";
+
 import { useRouter } from "next/navigation";
 
 import ProgramFolderCard from "./ProgramFolderCard";
@@ -9,7 +11,7 @@ interface ProgramGridProps {
   programs: Program[];
 }
 
-export default function ProgramGrid({ programs }: ProgramGridProps) {
+function ProgramGrid({ programs }: ProgramGridProps) {
   const router = useRouter();
 
   return (
@@ -32,3 +34,5 @@ export default function ProgramGrid({ programs }: ProgramGridProps) {
     </div>
   );
 }
+
+export default memo(ProgramGrid);

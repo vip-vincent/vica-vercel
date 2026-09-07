@@ -1,5 +1,7 @@
 "use client";
 
+import { memo } from "react";
+
 import { useRouter } from "next/navigation";
 
 import { Lesson } from "../types/lesson.type";
@@ -10,7 +12,7 @@ interface LessonGridProps {
   lessons: Lesson[];
 }
 
-export default function LessonGrid({ lessons }: LessonGridProps) {
+function LessonGrid({ lessons }: LessonGridProps) {
   const router = useRouter();
 
   return (
@@ -37,3 +39,5 @@ export default function LessonGrid({ lessons }: LessonGridProps) {
     </div>
   );
 }
+
+export default memo(LessonGrid);

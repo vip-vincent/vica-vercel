@@ -1,5 +1,7 @@
 "use client";
 
+import { memo } from "react";
+
 import { motion } from "framer-motion";
 import { FileText } from "lucide-react";
 
@@ -15,7 +17,7 @@ interface LessonCardProps {
   onClick?: () => void;
 }
 
-export default function LessonCard({
+function LessonCard({
   title,
   program,
   module,
@@ -86,3 +88,5 @@ export default function LessonCard({
     </motion.div>
   );
 }
+
+export default memo(LessonCard);

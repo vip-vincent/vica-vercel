@@ -1,5 +1,7 @@
 "use client";
 
+import { memo } from "react";
+
 import { motion } from "framer-motion";
 import { ClipboardList } from "lucide-react";
 
@@ -15,7 +17,7 @@ interface AssignmentCardProps {
   onClick?: () => void;
 }
 
-export default function AssignmentCard({
+function AssignmentCard({
   title,
   program,
   module,
@@ -82,3 +84,5 @@ export default function AssignmentCard({
     </motion.div>
   );
 }
+
+export default memo(AssignmentCard);

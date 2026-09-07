@@ -1,5 +1,7 @@
 "use client";
 
+import { memo } from "react";
+
 import { motion } from "framer-motion";
 
 import { FolderOpen, BookOpen, ClipboardCheck, Package } from "lucide-react";
@@ -15,7 +17,7 @@ interface ModuleFolderCardProps {
   onClick?: () => void;
 }
 
-export default function ModuleFolderCard({
+function ModuleFolderCard({
   title,
   program,
   lessons,
@@ -104,3 +106,5 @@ export default function ModuleFolderCard({
     </motion.div>
   );
 }
+
+export default memo(ModuleFolderCard);

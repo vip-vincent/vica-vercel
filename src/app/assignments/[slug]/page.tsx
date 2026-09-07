@@ -24,7 +24,17 @@ export default async function AssignmentPage({ params }: AssignmentPageProps) {
     notFound();
   }
 
-  const markdown = await getAssignmentMarkdown(assignment.githubPath);
+  let markdown = "";
+
+  try {
+    markdown = await getAssignmentMarkdown(assignment.githubPath);
+  } catch (error) {
+    console.error(
+      `Failed to fetch markdown for assignment "${assignment.githubPath}":`,
+      error,
+    );
+    markdown = "Konten tugas ini sedang tidak dapat dimuat. Silakan coba lagi nanti.";
+  }
 
   return <AssignmentContent assignment={assignment} markdown={markdown} />;
 }

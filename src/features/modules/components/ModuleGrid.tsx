@@ -1,5 +1,7 @@
 "use client";
 
+import { memo } from "react";
+
 import { useRouter } from "next/navigation";
 
 import { Module } from "../types/module.type";
@@ -10,7 +12,7 @@ interface ModuleGridProps {
   modules: Module[];
 }
 
-export default function ModuleGrid({ modules }: ModuleGridProps) {
+function ModuleGrid({ modules }: ModuleGridProps) {
   const router = useRouter();
 
   return (
@@ -37,3 +39,5 @@ export default function ModuleGrid({ modules }: ModuleGridProps) {
     </div>
   );
 }
+
+export default memo(ModuleGrid);

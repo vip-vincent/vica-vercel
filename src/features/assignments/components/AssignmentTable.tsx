@@ -1,5 +1,7 @@
 "use client";
 
+import { memo } from "react";
+
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { ClipboardList } from "lucide-react";
@@ -22,7 +24,7 @@ interface AssignmentTableProps {
 
 const MotionTableRow = motion(TableRow);
 
-export default function AssignmentTable({ assignments }: AssignmentTableProps) {
+function AssignmentTable({ assignments }: AssignmentTableProps) {
   const router = useRouter();
 
   return (
@@ -97,3 +99,5 @@ export default function AssignmentTable({ assignments }: AssignmentTableProps) {
     </motion.div>
   );
 }
+
+export default memo(AssignmentTable);

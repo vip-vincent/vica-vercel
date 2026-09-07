@@ -1,5 +1,7 @@
 "use client";
 
+import { memo } from "react";
+
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { BookOpen } from "lucide-react";
@@ -23,7 +25,7 @@ interface LessonTableProps {
 
 const MotionTableRow = motion(TableRow);
 
-export default function LessonTable({ lessons }: LessonTableProps) {
+function LessonTable({ lessons }: LessonTableProps) {
   const router = useRouter();
 
   return (
@@ -98,3 +100,5 @@ export default function LessonTable({ lessons }: LessonTableProps) {
     </motion.div>
   );
 }
+
+export default memo(LessonTable);

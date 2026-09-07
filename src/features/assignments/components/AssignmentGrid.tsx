@@ -1,5 +1,7 @@
 "use client";
 
+import { memo } from "react";
+
 import { useRouter } from "next/navigation";
 
 import { Assignment } from "../types/assignment.type";
@@ -10,7 +12,7 @@ interface AssignmentGridProps {
   assignments: Assignment[];
 }
 
-export default function AssignmentGrid({ assignments }: AssignmentGridProps) {
+function AssignmentGrid({ assignments }: AssignmentGridProps) {
   const router = useRouter();
 
   return (
@@ -37,3 +39,5 @@ export default function AssignmentGrid({ assignments }: AssignmentGridProps) {
     </div>
   );
 }
+
+export default memo(AssignmentGrid);

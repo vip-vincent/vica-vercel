@@ -1,5 +1,7 @@
 "use client";
 
+import { memo } from "react";
+
 import { useRouter } from "next/navigation";
 
 import { motion } from "framer-motion";
@@ -22,7 +24,7 @@ interface ProgramTableProps {
   programs: Program[];
 }
 
-export default function ProgramTable({ programs }: ProgramTableProps) {
+function ProgramTable({ programs }: ProgramTableProps) {
   const router = useRouter();
 
   return (
@@ -174,3 +176,5 @@ export default function ProgramTable({ programs }: ProgramTableProps) {
     </motion.div>
   );
 }
+
+export default memo(ProgramTable);

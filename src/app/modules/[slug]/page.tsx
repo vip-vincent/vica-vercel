@@ -23,14 +23,31 @@ export default async function ModuleDetailPage({
 }: ModuleDetailPageProps) {
   const { slug } = await params;
 
-  const programs = (await GithubService.getPrograms()).filter(
-    (item: any) => item.type === "dir",
-  );
+  let programsRaw: any[];
+
+  try {
+    programsRaw = await GithubService.getPrograms();
+  } catch (error) {
+    console.error("Failed to fetch programs from GitHub:", error);
+    notFound();
+  }
+
+  const programs = programsRaw.filter((item: any) => item.type === "dir");
 
   let selectedModule = null;
 
   for (const program of programs) {
-    const modules = await GithubService.getModules(program.name);
+    let modules: any[];
+
+    try {
+      modules = await GithubService.getModules(program.name);
+    } catch (error) {
+      console.error(
+        `Failed to fetch modules for program "${program.name}":`,
+        error,
+      );
+      continue;
+    }
 
     const found = modules.find(
       (module: any) =>
@@ -51,9 +68,6 @@ export default async function ModuleDetailPage({
             .filter((item: any) => item.type === "dir")
             .map((item: any) => mapLesson(item, program.name, found.name))
         : [];
-
-      console.log("LESSONS");
-      console.log(lessons);
     } catch {
       moduleData.lessons = [];
     }
@@ -69,9 +83,6 @@ export default async function ModuleDetailPage({
             .filter((item: any) => item.type === "dir")
             .map((item: any) => mapAssignment(item, program.name, found.name))
         : [];
-
-      console.log("ASSIGNMENTS");
-      console.log(assignments);
     } catch {
       moduleData.assignments = [];
     }
@@ -87,8 +98,6 @@ export default async function ModuleDetailPage({
             .filter((item: any) => item.type !== "dir")
             .map((item: any) => mapResource(item))
         : [];
-      console.log("RESOURCES");
-      console.log(resources);
     } catch {
       moduleData.resources = [];
     }

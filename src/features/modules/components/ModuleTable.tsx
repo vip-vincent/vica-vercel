@@ -1,5 +1,7 @@
 "use client";
 
+import { memo } from "react";
+
 import { useRouter } from "next/navigation";
 
 import { motion } from "framer-motion";
@@ -22,7 +24,7 @@ interface ModuleTableProps {
   modules: Module[];
 }
 
-export default function ModuleTable({ modules }: ModuleTableProps) {
+function ModuleTable({ modules }: ModuleTableProps) {
   const router = useRouter();
 
   return (
@@ -227,3 +229,5 @@ export default function ModuleTable({ modules }: ModuleTableProps) {
     </motion.div>
   );
 }
+
+export default memo(ModuleTable);

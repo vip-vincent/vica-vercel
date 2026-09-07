@@ -1,11 +1,23 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { motion } from "framer-motion";
 
 import PageHeader from "@/components/shared/PageHeader";
-import MarkdownViewer from "@/components/shared/MarkdownViewer";
 
 import { Lesson } from "@/features/lessons/types/lesson.type";
+
+// Lazy load: react-markdown + remark-gfm cukup berat, hanya perlu di-load
+// saat halaman detail lesson ini benar-benar dibuka.
+const MarkdownViewer = dynamic(
+  () => import("@/components/shared/MarkdownViewer"),
+  {
+    loading: () => (
+      <div className="h-40 w-full animate-pulse rounded-xl bg-slate-100" />
+    ),
+  },
+);
 
 interface LessonContentProps {
   lesson: Lesson;

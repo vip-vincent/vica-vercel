@@ -1,5 +1,7 @@
 "use client";
 
+import { memo } from "react";
+
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
@@ -22,7 +24,7 @@ interface ResourceTableProps {
 
 const MotionTableRow = motion(TableRow);
 
-export default function ResourceTable({ resources }: ResourceTableProps) {
+function ResourceTable({ resources }: ResourceTableProps) {
   const router = useRouter();
 
   return (
@@ -107,3 +109,5 @@ export default function ResourceTable({ resources }: ResourceTableProps) {
     </motion.div>
   );
 }
+
+export default memo(ResourceTable);

@@ -1,5 +1,7 @@
 "use client";
 
+import { memo } from "react";
+
 import { motion } from "framer-motion";
 import { Folder } from "lucide-react";
 
@@ -8,7 +10,7 @@ interface ProgramFolderCardProps {
   onClick?: () => void;
 }
 
-export default function ProgramFolderCard({
+function ProgramFolderCard({
   title,
   onClick,
 }: ProgramFolderCardProps) {
@@ -48,3 +50,5 @@ export default function ProgramFolderCard({
     </motion.div>
   );
 }
+
+export default memo(ProgramFolderCard);

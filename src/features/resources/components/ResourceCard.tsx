@@ -1,5 +1,7 @@
 "use client";
 
+import { memo } from "react";
+
 import { motion } from "framer-motion";
 
 import { Download } from "lucide-react";
@@ -19,7 +21,7 @@ interface ResourceCardProps {
   onClick?: () => void;
 }
 
-export default function ResourceCard({
+function ResourceCard({
   title,
   description,
   type,
@@ -143,3 +145,5 @@ export default function ResourceCard({
     </motion.div>
   );
 }
+
+export default memo(ResourceCard);

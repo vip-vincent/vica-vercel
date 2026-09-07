@@ -1,5 +1,7 @@
 "use client";
 
+import { memo } from "react";
+
 import { useRouter } from "next/navigation";
 
 import { Resource } from "../types/resource.type";
@@ -10,7 +12,7 @@ interface ResourceGridProps {
   resources: Resource[];
 }
 
-export default function ResourceGrid({ resources }: ResourceGridProps) {
+function ResourceGrid({ resources }: ResourceGridProps) {
   const router = useRouter();
 
   return (
@@ -39,3 +41,5 @@ export default function ResourceGrid({ resources }: ResourceGridProps) {
     </div>
   );
 }
+
+export default memo(ResourceGrid);
